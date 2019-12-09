@@ -18,21 +18,21 @@ public class App {
 
 		viewg.inicializa(modelg);
 		Grupocontroller contg = viewg.getCont();
-		
+
 		String nome = "Agenda";
 		contg.handleEvents(nome);
-		
-		//space
-		
+
+		// space
+
 		Grupo modg = new Grupo();
 		Grupoview vieg = new Grupoview();
 
 		vieg.inicializa(modg);
 		Grupocontroller cong = vieg.getCont();
-		
+
 		String nomez = "P7";
 		cong.handleEvents(nomez);
-		
+
 		contg.addGrupo(modg);
 
 		Scanner scan = new Scanner(System.in);
@@ -57,16 +57,14 @@ public class App {
 			case (1):
 
 				viewg.display();
+			
 				for (Grupo mod : contg.getModel().grupos) {
 
-					System.out.println("-----------------------------------------------");
-					System.out.println("Nome do grupo: " + mod.getNome());
+					Grupoview v10 = new Grupoview();
+					v10.inicializa(mod);
 
-					for (Contato contat : mod.contatos) {
-						System.out.println("--------------------------------------------");
-						System.out.println("Nome contato:" + contat.getNome());
-						System.out.println("Numero contato:" + contat.getNumero());
-					}
+					v10.display();
+
 				}
 
 				break;
@@ -108,12 +106,12 @@ public class App {
 
 				for (Grupo gr : contg.getModel().grupos) {
 					if (gr.getNome().equals(grupo)) {
-						
+
 						Grupoview v10 = new Grupoview();
 						v10.inicializa(gr);
-						
+
 						Grupocontroller gc10 = v10.getCont();
-						
+
 						gc10.addContato(model2);
 					}
 				}
@@ -128,14 +126,11 @@ public class App {
 				for (Grupo gr2 : contg.getModel().grupos) {
 					if (gr2.getNome().equals(grupo2)) {
 
-						System.out.println("--------------------------------------------");
-						System.out.println("Nome do grupo: " + gr2.getNome());
-						
-						for (Contato contat : gr2.contatos) {
-							System.out.println("--------------------------------------------");
-							System.out.println("Nome contato:" + contat.getNome());
-							System.out.println("Numero contato:" + contat.getNumero());
-						}
+						Grupoview v10 = new Grupoview();
+						v10.inicializa(gr2);
+
+						v10.display();
+
 					}
 				}
 
