@@ -10,10 +10,19 @@ public class Grupo {
 	String nome;
 	private List<Observer> observers = new ArrayList<Observer>();
 	public List<Contato> contatos = new ArrayList<>();
+	public List<Grupo> grupos = new ArrayList<>();
 
 
 	public void attach(Observer ob) {
 		observers.add(ob);
+	}
+	
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}
 
 	public List<Contato> getContatos() {
@@ -38,4 +47,5 @@ public class Grupo {
 			ob.update();
 		}
 	}
+	
 }
