@@ -18,8 +18,22 @@ public class App {
 
 		viewg.inicializa(modelg);
 		Grupocontroller contg = viewg.getCont();
+		
 		String nome = "Agenda";
 		contg.handleEvents(nome);
+		
+		//space
+		
+		Grupo modg = new Grupo();
+		Grupoview vieg = new Grupoview();
+
+		vieg.inicializa(modg);
+		Grupocontroller cong = vieg.getCont();
+		
+		String nomez = "P7";
+		cong.handleEvents(nomez);
+		
+		contg.addGrupo(modg);
 
 		Scanner scan = new Scanner(System.in);
 
@@ -34,7 +48,7 @@ public class App {
 			System.out.println("| 3- Adicionar em Grupo              |");
 			System.out.println("| 4- Mostrar Grupo                   |");
 			System.out.println("|====================================|");
-			System.out.print("Opção:");
+			System.out.print("OpÃ§Ã£o:");
 
 			int op = scan.nextInt();
 
@@ -43,10 +57,16 @@ public class App {
 			case (1):
 
 				viewg.display();
-				for (Grupo mod : contg.grupos) {
+				for (Grupo mod : contg.getModel().grupos) {
+
 					System.out.println("-----------------------------------------------");
 					System.out.println("Nome do grupo: " + mod.getNome());
-					System.out.println(mod.getContatos());
+
+					for (Contato contat : mod.contatos) {
+						System.out.println("--------------------------------------------");
+						System.out.println("Nome contato:" + contat.getNome());
+						System.out.println("Numero contato:" + contat.getNumero());
+					}
 				}
 
 				break;
@@ -83,12 +103,18 @@ public class App {
 
 				cont2.handleEvent(nome2, numero2);
 
-				System.out.println("Digite o nome do grupo á adicionar: ");
+				System.out.println("Digite o nome do grupo Ã¡ adicionar: ");
 				String grupo = scan.next();
 
-				for (Grupo gr : contg.grupos) {
+				for (Grupo gr : contg.getModel().grupos) {
 					if (gr.getNome().equals(grupo)) {
-						gr.attach(view2);
+						
+						Grupoview v10 = new Grupoview();
+						v10.inicializa(gr);
+						
+						Grupocontroller gc10 = v10.getCont();
+						
+						gc10.addContato(model2);
 					}
 				}
 
@@ -99,17 +125,24 @@ public class App {
 				System.out.println("Digite o nome do grupo a ser exibido: ");
 				String grupo2 = scan.next();
 
-				for (Grupo gr2 : contg.grupos) {
+				for (Grupo gr2 : contg.getModel().grupos) {
 					if (gr2.getNome().equals(grupo2)) {
-						System.out.println(gr2.getNome());
-						System.out.println(gr2.getContatos());
+
+						System.out.println("--------------------------------------------");
+						System.out.println("Nome do grupo: " + gr2.getNome());
+						
+						for (Contato contat : gr2.contatos) {
+							System.out.println("--------------------------------------------");
+							System.out.println("Nome contato:" + contat.getNome());
+							System.out.println("Numero contato:" + contat.getNumero());
+						}
 					}
 				}
 
 				break;
 
 			default:
-				System.out.println("\n~Opção invalida!\n");
+				System.out.println("\n~OpÃ§Ã£o invalida!\n");
 			}
 		}
 
